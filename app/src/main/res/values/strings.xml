@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Make It Metric</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_weight">Weight</string>
+    <string name="title_length">Length</string>
+    <string name="title_volume">Volume</string>
+    <string name="title_temperature">Temperature</string>
+</resources>

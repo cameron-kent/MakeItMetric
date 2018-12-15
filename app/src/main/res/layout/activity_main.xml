@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_horizontal_40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_horizontal_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_verticalal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="172dp"
+        android:text="@string/title_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Spinner
+        android:id="@+id/spinner_input_unit"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_verticalal"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_output_unit"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_10"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_verticalal" />
+
+    <EditText
+        android:id="@+id/text_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_40"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_verticalal"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="input" />
+
+    <TextView
+        android:id="@+id/text_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_verticalal"
+        tools:text="output" />
+
+
+    <GridLayout
+        android:id="@+id/numpad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:columnCount="4"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_40">
+
+        <Button
+            android:id="@+id/num_1"
+            tools:text="1" />
+
+        <Button
+            android:id="@+id/num_2"
+            tools:text="2" />
+
+        <Button
+            android:id="@+id/num_3"
+            tools:text="3" />
+
+        <Button
+            android:id="@+id/num_delete"
+            tools:text="delete" />
+
+        <Button
+            android:id="@+id/num_4"
+            tools:text="4" />
+
+        <Button
+            android:id="@+id/num_5"
+            tools:text="5" />
+
+        <Button
+            android:id="@+id/num_6"
+            tools:text="6" />
+
+        <Button
+            android:id="@+id/num_0"
+            tools:text="0" />
+
+        <Button
+            android:id="@+id/num_7"
+            tools:text="7" />
+
+        <Button
+            android:id="@+id/num_8"
+            tools:text="8" />
+
+        <Button
+            android:id="@+id/num_9"
+            tools:text="9" />
+
+        <Button
+            android:id="@+id/num_convert"
+            tools:text="convert" />
+    </GridLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+
+</android.support.constraint.ConstraintLayout>
