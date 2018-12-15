@@ -1,10 +1,63 @@
 <resources>
     <string name="app_name">Make It Metric</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">CHOOSE UNIT TYPE</string>
     <string name="title_weight">Weight</string>
     <string name="title_length">Length</string>
     <string name="title_volume">Volume</string>
     <string name="title_temperature">Temperature</string>
+    <string name="button_1">1</string>
+    <string name="button_2">2</string>
+    <string name="button_3">3</string>
+    <string name="button_4">4</string>
+    <string name="button_5">5</string>
+    <string name="button_6">6</string>
+    <string name="button_7">7</string>
+    <string name="button_8">8</string>
+    <string name="button_9">9</string>
+    <string name="button_0">0</string>
+    <string name="button_decimal">.</string>
+    <string name="button_delete">delete</string>
+    <string name="button_convert">convert</string>
+
+    <string-array name="array_length_input">
+        <item>inch</item>
+        <item>feet</item>
+        <item>yard</item>
+        <item>mile</item>
+    </string-array>
+
+    <string-array name="array_length_output">
+        <item>centimetres</item>
+        <item>metres</item>
+        <item>kilometres</item>
+    </string-array>
+
+    <string-array name="array_weight_input">
+        <item>ounce</item>
+        <item>pound</item>
+        <item>stone</item>
+    </string-array>
+
+    <string-array name="array_weight_output">
+        <item>grams</item>
+        <item>kilograms</item>
+    </string-array>
+
+    <string-array name="array_volume_input">
+        <item>ounce</item>
+        <item>gallon</item>
+    </string-array>
+
+    <string-array name="array_volume_output">
+        <item>millilitres</item>
+        <item>litres</item>
+    </string-array>
+
+    <string-array name="array_temperature_input">
+        <item>fahrenheit</item>
+    </string-array>
+
+    <string-array name="array_temperature_output">
+        <item>celsius</item>
+    </string-array>
 </resources>
