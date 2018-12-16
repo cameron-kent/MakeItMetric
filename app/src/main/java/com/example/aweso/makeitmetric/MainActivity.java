@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView outputText;
 
 
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
 
 
         @Override
@@ -42,13 +40,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.navigation_weight:
                     numPad.setVisibility(View.VISIBLE);
 
-                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_weight_input, android.R.layout.simple_spinner_item);
-                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    inputSpinner.setAdapter(inputAdapter);
-
-                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_weight_output, android.R.layout.simple_spinner_item);
-                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    outputSpinner.setAdapter(outputAdapter);
+                    PopulateSpinners(R.array.array_weight_input, R.array.array_weight_output);
+//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_weight_input, android.R.layout.simple_spinner_item);
+//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    inputSpinner.setAdapter(inputAdapter);
+//
+//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_weight_output, android.R.layout.simple_spinner_item);
+//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    outputSpinner.setAdapter(outputAdapter);
 
                     mTitleMessage.setText(R.string.title_weight);
 
@@ -57,39 +56,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.navigation_length:
                     numPad.setVisibility(View.VISIBLE);
 
-                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_length_input, android.R.layout.simple_spinner_item);
-                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    inputSpinner.setAdapter(inputAdapter);
+                    PopulateSpinners(R.array.array_length_input, R.array.array_length_output);
 
-                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_length_output, android.R.layout.simple_spinner_item);
-                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    outputSpinner.setAdapter(outputAdapter);
+//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_length_input, android.R.layout.simple_spinner_item);
+//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    inputSpinner.setAdapter(inputAdapter);
+//
+//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_length_output, android.R.layout.simple_spinner_item);
+//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    outputSpinner.setAdapter(outputAdapter);
 
                     mTitleMessage.setText(R.string.title_length);
                     return true;
                 case R.id.navigation_volume:
                     numPad.setVisibility(View.VISIBLE);
 
-                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_volume_input, android.R.layout.simple_spinner_item);
-                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    inputSpinner.setAdapter(inputAdapter);
+                    PopulateSpinners(R.array.array_volume_input, R.array.array_volume_output);
 
-                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_volume_output, android.R.layout.simple_spinner_item);
-                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    outputSpinner.setAdapter(outputAdapter);
+//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_volume_input, android.R.layout.simple_spinner_item);
+//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    inputSpinner.setAdapter(inputAdapter);
+//
+//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_volume_output, android.R.layout.simple_spinner_item);
+//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    outputSpinner.setAdapter(outputAdapter);
 
                     mTitleMessage.setText(R.string.title_volume);
                     return true;
                 case R.id.navigation_temperature:
                     numPad.setVisibility(View.VISIBLE);
 
-                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_temperature_input, android.R.layout.simple_spinner_item);
-                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    inputSpinner.setAdapter(inputAdapter);
+                    PopulateSpinners(R.array.array_temperature_input, R.array.array_temperature_output);
 
-                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_temperature_output, android.R.layout.simple_spinner_item);
-                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    outputSpinner.setAdapter(outputAdapter);
+//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_temperature_input, android.R.layout.simple_spinner_item);
+//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    inputSpinner.setAdapter(inputAdapter);
+//
+//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_temperature_output, android.R.layout.simple_spinner_item);
+//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    outputSpinner.setAdapter(outputAdapter);
 
                     mTitleMessage.setText(R.string.title_temperature);
                     return true;
@@ -97,6 +102,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         }
     };
+
+    private void PopulateSpinners(int array_input, int array_output) {
+        inputAdapter = ArrayAdapter.createFromResource(activityContext, array_input, android.R.layout.simple_spinner_item);
+        inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputSpinner.setAdapter(inputAdapter);
+
+        outputAdapter = ArrayAdapter.createFromResource(activityContext, array_output, android.R.layout.simple_spinner_item);
+        outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        outputSpinner.setAdapter(outputAdapter);
+    }
 
     private void clearInputField() {
         //TODO set clear method on update
@@ -121,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         outputText = (TextView) findViewById(R.id.text_output);
 
-        //TODO try refactor to arrayAdapter with single OnClickListener
         Button num1 = (Button) findViewById(R.id.num_1);
         num1.setOnClickListener(this);
         Button num2 = (Button) findViewById(R.id.num_2);
@@ -196,17 +210,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 inputText.setText(inputText.getText().insert(inputText.getText().length(), "."));
                 break;
             case R.id.num_delete:
-                //TODO delete last input
-                //If EditText1.Text.Length > 0 Then
-                //EditText1.Text = EditText1.Text.Substring2(0, EditText1.Text.Length - 1)
-                //End If
                 if (inputText.length() > 0) {
-                    inputText.setText(inputText.getText().subSequence(0, inputText.length() -1));
+                    inputText.setText(inputText.getText().subSequence(0, inputText.length() - 1));
                 }
                 break;
             case R.id.num_convert:
-                //TODO convert inputs
+                convertToMetric();
                 break;
         }
+    }
+
+    private void convertToMetric() {
+        //TODO convert inputs
     }
 }

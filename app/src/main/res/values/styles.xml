@@ -3,9 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/DARK_TANGERINE</item>
+        <item name="colorPrimaryDark">@color/REGISTRATION_BLACK</item>
+        <item name="colorAccent">@color/PLATINUM</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="colorButtonNormal">@color/DARK_TANGERINE</item>
+        <item name="android:textColor">@color/REGISTRATION_BLACK</item>
     </style>
 
 </resources>
