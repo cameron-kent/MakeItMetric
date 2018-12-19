@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Spinner inputSpinner;
     private Spinner outputSpinner;
-    private ArrayAdapter<CharSequence> inputAdapter, outputAdapter;
 
     private EditText inputText;
     private TextView outputText;
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             GridLayout numPad = (GridLayout) findViewById(R.id.numpad);
@@ -39,63 +37,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch (item.getItemId()) {
                 case R.id.navigation_weight:
                     numPad.setVisibility(View.VISIBLE);
-
                     PopulateSpinners(R.array.array_weight_input, R.array.array_weight_output);
-//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_weight_input, android.R.layout.simple_spinner_item);
-//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    inputSpinner.setAdapter(inputAdapter);
-//
-//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_weight_output, android.R.layout.simple_spinner_item);
-//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    outputSpinner.setAdapter(outputAdapter);
-
                     mTitleMessage.setText(R.string.title_weight);
-
-                    clearInputField();
+                    ClearInputField();
                     return true;
                 case R.id.navigation_length:
                     numPad.setVisibility(View.VISIBLE);
-
                     PopulateSpinners(R.array.array_length_input, R.array.array_length_output);
-
-//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_length_input, android.R.layout.simple_spinner_item);
-//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    inputSpinner.setAdapter(inputAdapter);
-//
-//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_length_output, android.R.layout.simple_spinner_item);
-//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    outputSpinner.setAdapter(outputAdapter);
-
                     mTitleMessage.setText(R.string.title_length);
                     return true;
                 case R.id.navigation_volume:
                     numPad.setVisibility(View.VISIBLE);
-
                     PopulateSpinners(R.array.array_volume_input, R.array.array_volume_output);
-
-//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_volume_input, android.R.layout.simple_spinner_item);
-//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    inputSpinner.setAdapter(inputAdapter);
-//
-//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_volume_output, android.R.layout.simple_spinner_item);
-//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    outputSpinner.setAdapter(outputAdapter);
-
                     mTitleMessage.setText(R.string.title_volume);
                     return true;
                 case R.id.navigation_temperature:
                     numPad.setVisibility(View.VISIBLE);
-
                     PopulateSpinners(R.array.array_temperature_input, R.array.array_temperature_output);
-
-//                    inputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_temperature_input, android.R.layout.simple_spinner_item);
-//                    inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    inputSpinner.setAdapter(inputAdapter);
-//
-//                    outputAdapter = ArrayAdapter.createFromResource(activityContext, R.array.array_temperature_output, android.R.layout.simple_spinner_item);
-//                    outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    outputSpinner.setAdapter(outputAdapter);
-
                     mTitleMessage.setText(R.string.title_temperature);
                     return true;
             }
@@ -103,20 +61,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+    //Populate spinners base on unit type navigation selected
     private void PopulateSpinners(int array_input, int array_output) {
-        inputAdapter = ArrayAdapter.createFromResource(activityContext, array_input, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> inputAdapter = ArrayAdapter.createFromResource(activityContext, array_input, android.R.layout.simple_spinner_item);
         inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputSpinner.setAdapter(inputAdapter);
 
-        outputAdapter = ArrayAdapter.createFromResource(activityContext, array_output, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> outputAdapter = ArrayAdapter.createFromResource(activityContext, array_output, android.R.layout.simple_spinner_item);
         outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         outputSpinner.setAdapter(outputAdapter);
+
+        ClearInputField();
     }
 
-    private void clearInputField() {
+    //Clear the edit text box
+    private void ClearInputField() {
         //TODO set clear method on update
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         inputText = (EditText) findViewById(R.id.text_input);
         inputText.setOnTouchListener(inputTouchListener);
-
 
         outputText = (TextView) findViewById(R.id.text_output);
 
@@ -163,9 +123,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button numCovert = (Button) findViewById(R.id.num_convert);
         numCovert.setOnClickListener(this);
 
-
     }
 
+    //Keeps android keyboard / numpad hidden
     private View.OnTouchListener inputTouchListener = new View.OnTouchListener() {
         public boolean onTouch(View v, MotionEvent event) {
             return true; // the listener has consumed the event
@@ -215,12 +175,154 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.num_convert:
-                convertToMetric();
+                String inputUnit = inputSpinner.getSelectedItem().toString();
+                String outputUnit = outputSpinner.getSelectedItem().toString();
+                Float inputNumber = Float.parseFloat(inputText.getText().toString());
+
+                ConvertToMetric(inputUnit, outputUnit, inputNumber);
                 break;
         }
     }
 
-    private void convertToMetric() {
+    private void ConvertToMetric(String inputUnit, String outputUnit, Float inputNumber) {
+        int outputNumber = 0;
         //TODO convert inputs
+        switch (mTitleMessage.toString()) {
+            case "weight":
+//                ConvertWeight(inputUnit, outputUnit, inputNumber);
+                break;
+            case "length":
+                ConvertLength(inputUnit, outputUnit, inputNumber);
+                break;
+            case "volume":
+//                ConvertVolume(inputUnit, outputUnit, inputNumber);
+                break;
+            case "temperature":
+//                ConvertTemperature(inputUnit, outputUnit, inputNumber);
+                break;
+        }
+        outputText.setText(outputNumber);
     }
+
+//    private float ConvertTemperature(String inputUnit, String outputUnit, Float inputNumber) {
+//        float outputNumber;
+//
+//
+//        return outputNumber;
+//    }
+
+//    private float ConvertVolume(String inputUnit, String outputUnit, Float inputNumber) {
+//        float outputNumber;
+//
+//        switch (inputUnit) {
+//            case "ounce":
+//                switch (outputUnit) {
+//                    case "millilitres":
+//                        break;
+//                    case "litres":
+//                        break;
+//                }
+//            case "gallon":
+//                switch (outputUnit) {
+//                    case "millilitres":
+//                        break;
+//                    case "litres":
+//                        break;
+//                }
+//        }
+//        return outputNumber;
+//    }
+
+
+    private float ConvertLength(String inputUnit, String outputUnit, Float inputNumber) {
+        float outputNumber = 0;
+
+        switch (inputUnit) {
+            case "inch":
+                switch (outputUnit) {
+                    case "centimetres":
+                        outputNumber = (float) (inputNumber * 2.54);
+                        break;
+                    case "metres":
+                        outputNumber = (float) ((inputNumber * 2.54 / 100));
+                        break;
+                    case "kilometres":
+                        outputNumber = (float) ((inputNumber * 2.54 / 1000));
+                        break;
+                }
+            case "feet":
+                switch (outputUnit) {
+                    case "centimetres":
+                        outputNumber = (float) ((inputNumber * 0.3048) * 100);
+                        break;
+                    case "metres":
+                        outputNumber = (float) (inputNumber * 0.3048);
+                        break;
+                    case "kilometres":
+                        outputNumber = (float) ((inputNumber * 0.3048) / 100);
+                        break;
+
+                }
+            case "yard":
+                switch (outputUnit) {
+                    case "centimetres":
+                        outputNumber = (float) ((inputNumber * 0.9144) * 100);
+                        break;
+                    case "metres":
+                        outputNumber = (float) (inputNumber * 0.9144);
+                        break;
+                    case "kilometres":
+                        outputNumber = (float) ((inputNumber * 0.9144) / 100);
+                        break;
+
+                }
+            case "mile":
+                switch (outputUnit) {
+                    case "centimetres":
+                        outputNumber = (float) ((inputNumber * 1.6093) / 1000);
+                        break;
+                    case "metres":
+                        outputNumber = (float) ((inputNumber * 1.6093) / 100);
+                        break;
+                    case "kilometres":
+                        outputNumber = (float) (inputNumber * 1.6093);
+                        break;
+                }
+        }
+
+        return outputNumber;
+
+    }
+
+//    private float ConvertWeight(String inputUnit, String outputUnit, Float inputNumber) {
+//        float outputNumber;
+//
+//        switch (inputUnit) {
+//            case "ounce":
+//                switch (outputUnit) {
+//                    case "grams":
+//                        break;
+//                    case "kilograms":
+//                        break;
+//                }
+//            case "pound":
+//                switch (outputUnit) {
+//                    case "grams":
+//                        break;
+//                    case "kilograms":
+//                        break;
+//                }
+//            case "stone":
+//                switch (outputUnit) {
+//                    case "grams":
+//                        break;
+//                    case "kilograms":
+//                        break;
+//                }
+//
+//        }
+//        return outputNumber;
+//
+//    }
+
 }
